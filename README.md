@@ -39,33 +39,33 @@ dataset_no: 1-> tsinghua benchmark dataset, 2-> BETA dataset
 **fun_calculate_ssvep_template(dataset_no)**  
 dataset_no: 1-> tsinghua benchmark dataset, 2-> BETA dataset  
 
-**itr_bci()**  
-
-
-**ck_signal_nh(sti_f,Fs,pha_val,sig_len,num_of_harmonics)**  
-sti_f: stimulus frequency  
-Fs: sample frequency  
-pha_val: stimulus phase (unit: rad)
-sig_len: signal length
-num_of_harmonics: number of harmonics for sine-cosine reference signal
+**itr_bci(p,Nf,T)**  
+p: accuracy
+Nf: number of stimuli
+T: data length (same dimensions as p), including the stimulation length and the rest length  
 
 ## Simulation study  
-
-With only 9 calibration trials, the stCCA can achieve an excellent recognition performance.  
-It is comparable to the calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials)
+In this simulation study, we test the accuracy of the stCCA with only 9 calibration trials. The 9 calibration trials are corresponding to 9 different stimulus frequencies (e.g., 8.2, 9.2, 10.0, 11.0, 11.8, 12.6, 13.6, 14.4, 15.4 Hz, according to the selection strategy A2 as mentioned in [1]) on two different SSVEP datasets
 
 ### Dataset I
 
 > k=9;  
 > f_idx=round((40/k*[1:k]+40/k*[0:k-1])/2);  
 > [sub_acc]=fun_stcca(f_idx,1,0.7,1);
+> all_sub_itr=itr_bci(sub_acc/100,40,(0.7+0.5)*ones(35,1));  
+> mean(all_sub_itr);    
   
-We can achieve the performance of, which is exactly the one as indicated in Table xx in [1]
+We can achieve the performance of, which is exactly the one as indicated in Table xx in [1].  
+It is comparable to the calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials)
 
 ### Dataset II
 
 > k=9;  
 > f_idx=round((40/k*[1:k]+40/k*[0:k-1])/2);  
 > [sub_acc]=fun_stcca(f_idx,1,0.7,2);
+> all_sub_itr=itr_bci(sub_acc/100,40,(0.7+0.5)*ones(70,1));  
+> mean(all_sub_itr);  
+
+
 
 
