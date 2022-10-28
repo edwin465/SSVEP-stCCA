@@ -8,16 +8,33 @@ We propose a new CCA algorithm that utilizes the intra- and inter-subject knowle
 The size of calibration data can be less than the number of stimuli
 
 
-
-
 ## What is subject transfer CCA (stCCA)?  
-
+In the stCCA, it uses the intra-subject spatial filter and inter-subject SSVEP template to compute the correlation coefficient.
 
 ### Intra-subject spatial filter  
 According to [1], we find that `SSVEPs share a common spatial pattern (or a common spatial filter) across different stimulus frequencies` (precisely speaking, from 8Hz to 15.8Hz) and `the spatial pattern has very large individual difference`. This may imply that each subject can be assigned only one spatial filter. This spatial filter can be termed **the intra-subject spatial filter**. In other words, each subject has his/her own spatial filter.
 
-Based on the multi-stimulus CCA, it is possible to learn the intra-subject spatial filter from only several trials of a subject's calibration data:  
-[ms-CCA formula]
+Based on the multi-stimulus CCA, it is possible to learn the intra-subject spatial filter from a subject's SSVEP templates $\bar{\mathbf{X}}_j$ corresponding to only several frequencies (e.g., $K$ frequencies, $1 \le K \le N\_f$ and $N\_f$ is the number of stimuli):  
+```math
+r_{k}=\max_{\mathbf{u},\mathbf{v}}{\frac{\mathbf{u}^\top\mathcal{X}^\top\mathcal{Y}\mathbf{v}}{\sqrt{\mathbf{u}^\top \mathcal{X}^\top\mathcal{X}\mathbf{u}\cdot\mathbf{v}^\top\mathcal{Y}^\top\mathcal{Y}\mathbf{v}}}}=\mathrm{CCA}(\mathcal{X},\mathcal{Y}), 
+```  
+
+where  
+```math
+\mathcal{X} = \left[\bar{\mathbf{X}}_{a_1}^\top,\bar{\mathbf{X}}_{a_2}^\top,\cdots,\bar{\mathbf{X}}_{a_K}^\top \right]^\top,  \mathcal{Y} = \left[{\mathbf{Y}}_{a_1}^\top,{\mathbf{Y}}_{a_2}^\top,\cdots,{\mathbf{Y}}_{a_K}^\top \right]^\top,  
+```  
+```math
+\mathbf{Y} = \left[\begin{array}{c}
+    \sin (2\pi f_{k} t + \phi_k)\\
+    \cos (2\pi f_{k} t + \phi_k)\\
+    \sin (2\pi 2f_{k} t + 2\phi_k)\\
+    \cos (2\pi 2f_{k} t + 2\phi_k)\\
+    \vdots\\
+    \sin (2\pi N_h f_{k} t + N_h \phi_k)\\
+    \cos (2\pi N_h f_{k} t + N_h \phi_k)\\    
+	\end{array}\right]^\top 
+```  
+and $a\_1$, $a\_1$, ..., $a\_K$ are the indices of $K$ stimuli (let's say: $1 \le a_1 < a_2 \cdots < a_K \le N\_f$).  
 
 ### Inter-subject SSVEP template  
 Target subject's SSVEP template = weighted summation of source subjects' SSVEP templates  
@@ -25,16 +42,10 @@ Target subject's SSVEP template = weighted summation of source subjects' SSVEP t
 Weight vector is shared across different stimulus frequencies  
 
 ## Two SSVEP datasets
-1. Tsinghua benchmark dataset (Dataset I)
-2. BETA dataset (Dataset II)  
+1. Tsinghua benchmark dataset (Dataset I) [2]  
+2. BETA dataset (Dataset II) [3]  
 
-The details about Dataset I and II can be found:  
-**Dataset I**: Wang, Y., et al. (2016). A benchmark dataset for SSVEP-based brain–computer interfaces. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 25(10), 1746-1752.  
-
-**Dataset II**: Liu, B., et al. (2020). BETA: A large benchmark database toward SSVEP-BCI application. Frontiers in neuroscience, 14, 627.  
-
-These two datasets can be downloaded from http://bci.med.tsinghua.edu.cn/
-
+These two datasets can be downloaded from http://bci.med.tsinghua.edu.cn/  
 
 ## Matlab code
 
@@ -84,7 +95,9 @@ Test stCCA in two SSVEP datasets
 If you find any mistakes, please let me know via chiman465@gmail.com.
 
 ## Reference
-[1] Wong, C. M., et al. (2020). Inter-and intra-subject transfer reduces calibration effort for high-speed SSVEP-based BCIs. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 28(10), 2123-2135.
+[1] Wong, C. M., et al. (2020). Inter-and intra-subject transfer reduces calibration effort for high-speed SSVEP-based BCIs. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 28(10), 2123-2135.  
+[2] Wang, Y., et al. (2016). A benchmark dataset for SSVEP-based brain–computer interfaces. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 25(10), 1746-1752.   
+[3] Liu, B., et al. (2020). BETA: A large benchmark database toward SSVEP-BCI application. Frontiers in neuroscience, 14, 627.  
 
 # Citation  
 If you use this code for a publication, please cite the following papers
