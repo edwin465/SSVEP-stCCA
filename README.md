@@ -30,11 +30,24 @@ BETA dataset
 
 ## Matlab code
 
-`fun_stcca`:  
+**fun_stcca(f_idx,num_of_trials,TW,dataset_no)**  
+f_idx: the index of the selected frequencies  
+num_of_trials: number of trials for each selected frequency  
+TW: data length (unit: sec)  
+dataset_no: 1-> tsinghua benchmark dataset, 2-> BETA dataset  
 
-`fun_calculate_ssvep_template(dataset_no)`  
+**fun_calculate_ssvep_template(dataset_no)**  
+dataset_no: 1-> tsinghua benchmark dataset, 2-> BETA dataset  
 
-`itr_bci()`  
+**itr_bci()**  
+
+
+**ck_signal_nh(sti_f,Fs,pha_val,sig_len,num_of_harmonics)**  
+sti_f: stimulus frequency  
+Fs: sample frequency  
+pha_val: stimulus phase (unit: rad)
+sig_len: signal length
+num_of_harmonics: number of harmonics for sine-cosine reference signal
 
 ## Simulation study  
 
@@ -46,6 +59,8 @@ It is comparable to the calibration-based algorithms with minimally required cal
 > k=9;  
 > f_idx=round((40/k*[1:k]+40/k*[0:k-1])/2);  
 > [sub_acc]=fun_stcca(f_idx,1,0.7,1);
+  
+We can achieve the performance of, which is exactly the one as indicated in Table xx in [1]
 
 ### Dataset II
 
