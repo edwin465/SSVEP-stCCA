@@ -28,7 +28,29 @@ Weight vector is shared across different stimulus frequencies
 Tsinghua benchmark dataset  
 BETA dataset  
 
+## Matlab code
+
+`fun_stcca`:  
+
+`fun_calculate_ssvep_template(dataset_no)`  
+
+`itr_bci()`  
+
 ## Simulation study  
 
 With only 9 calibration trials, the stCCA can achieve an excellent recognition performance.  
 It is comparable to the calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials)
+
+### Dataset I
+
+> k=9;  
+> f_idx=round((40/k*[1:k]+40/k*[0:k-1])/2);  
+> [sub_acc]=fun_stcca(f_idx,1,0.7,1);
+
+### Dataset II
+
+> k=9;  
+> f_idx=round((40/k*[1:k]+40/k*[0:k-1])/2);  
+> [sub_acc]=fun_stcca(f_idx,1,0.7,2);
+
+
