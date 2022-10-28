@@ -82,3 +82,42 @@ Test stCCA in two SSVEP datasets
 
 ## Feedback
 If you find any mistakes, please let me know via chiman465@gmail.com.
+
+## Reference
+[1] Wong, C. M., et al. (2020). Inter-and intra-subject transfer reduces calibration effort for high-speed SSVEP-based BCIs. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 28(10), 2123-2135.
+
+# Citation  
+If you use this code for a publication, please cite the following papers
+
+@article{wong2020learning,  
+title={Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs},  
+author={Wong, Chi Man and Wan, Feng and Wang, Boyu and Wang, Ze and Nan, Wenya and Lao, Ka Fai and Mak, Peng Un and Vai, Mang I and Rosa, Agostinho},  
+journal={Journal of Neural Engineering},  
+volume={17},  
+number={1},  
+pages={016026},  
+year={2020},  
+publisher={IOP Publishing}  
+}  
+
+@article{wong2020spatial,  
+title={Spatial filtering in SSVEP-based BCIs: unified framework and new improvements},  
+author={Wong, Chi Man and Wang, Boyu and Wang, Ze and Lao, Ka Fai and Rosa, Agostinho and Wan, Feng},  
+journal={IEEE Transactions on Biomedical Engineering},  
+volume={67},  
+number={11},  
+pages={3057--3072},  
+year={2020},  
+publisher={IEEE}  
+}  
+
+@article{wong2020inter,  
+  title={Inter-and intra-subject transfer reduces calibration effort for high-speed SSVEP-based BCIs},  
+  author={Wong, Chi Man and Wang, Ze and Wang, Boyu and Lao, Ka Fai and Rosa, Agostinho and Xu, Peng and Jung, Tzyy-Ping and Chen, CL Philip and Wan, Feng},  
+  journal={IEEE Transactions on Neural Systems and Rehabilitation Engineering},  
+  volume={28},  
+  number={10},  
+  pages={2123--2135},  
+  year={2020},  
+  publisher={IEEE}  
+}  
