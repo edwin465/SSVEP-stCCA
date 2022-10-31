@@ -8,9 +8,9 @@ We propose a subject transfer based canonical correlation analysis (stCCA) algor
 In the stCCA, it uses the intra-subject spatial filter and inter-subject SSVEP template to compute the correlation coefficient.
 
 ### Intra-subject spatial filter  
-According to [1], we find that `SSVEPs share a common spatial pattern (or a common spatial filter) across different stimulus frequencies` (precisely speaking, from 8Hz to 15.8Hz) and `the spatial pattern has very large individual difference`. This may imply that each subject can be assigned only one spatial filter. This spatial filter can be termed **the intra-subject spatial filter**. In other words, each subject has his/her own spatial filter.
+According to [1], we find that `SSVEPs share a common spatial pattern (or a common spatial filter) across different stimulus frequencies` (precisely speaking, from 8Hz to 15.8Hz) and `the spatial pattern has very large individual difference`. This may imply that **each subject has his/her own spatial filter and different subjects cannot share a common spatial filter**. This subject-specific spatial filter can be termed **the intra-subject spatial filter**. 
 
-Based on the multi-stimulus CCA, it is possible to learn the intra-subject spatial filter from a subject's SSVEP templates $\bar{\mathbf{X}}_j$ corresponding to only several frequencies (e.g., $K$ frequencies, $1 \le K \le N\_f$ and $N\_f$ is the number of stimuli):  
+Based on the multi-stimulus CCA, it is possible to learn the intra-subject spatial filter from a subject's SSVEP templates $\bar{\mathbf{X}}\_j$ corresponding to only several frequencies (e.g., $K$ frequencies, $1 \le K \le N\_f$ and $N\_f$ is the number of stimuli):  
 ```math
 r_{k}=\max_{\mathbf{u},\mathbf{v}}{\frac{\mathbf{u}^\top\mathcal{X}^\top\mathcal{Y}\mathbf{v}}{\sqrt{\mathbf{u}^\top \mathcal{X}^\top\mathcal{X}\mathbf{u}\cdot\mathbf{v}^\top\mathcal{Y}^\top\mathcal{Y}\mathbf{v}}}}=\mathrm{CCA}(\mathcal{X},\mathcal{Y}), 
 ```  
@@ -33,9 +33,9 @@ where
 and $a\_1$, $a\_1$, ..., $a\_K$ are the indices of $K$ stimuli (let's say: $1 \le a_1 < a_2 \cdots < a_K \le N\_f$).  
 
 ### Inter-subject SSVEP template  
-Target subject's SSVEP template = weighted summation of source subjects' SSVEP templates  
+Here we assume that `different subjects' spatially filtered SSVEP template share common knowledge`. Specifically, **a new subject's (or target subject's) spatially filtered SSVEP template is the weighted summation of the existing subjects' (or source subjects') spatially filtered SSVEP templates**. In addition, the weight vector is invariant with different stimulus frequencies.
 
-Weight vector is shared across different stimulus frequencies  
+
 
 ## Two SSVEP datasets
 1. Tsinghua benchmark dataset (Dataset I) [2]  
