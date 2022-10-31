@@ -1,7 +1,7 @@
 # SSVEP-stCCA
 Steady-state visual evoked potential (SSVEP)-based brain-computer interfaces (BCIs) can deliver high information transfer rate (ITR), but **requiring a large amount of subject’s calibration data to learn the class- and subject-specific model parameters (e.g. the spatial filters and SSVEP templates)**. Among the current calibration-based algorithms, the amount of the calibration data is proportional to the number of classes (or visual stimuli). In addition, **the size of calibration data cannot be less than the number of stimuli**.  
 
-We propose a subject transfer based canonical correlation analysis (stCCA) algorithm that utilizes the intra- and inter-subject knowledge to highly reduce the subject's calibration data. Our experimental results demonstrate that the stCCA method performs well with extremely little calibration data, providing an ITR at **198.18±59.12 bpm with 9 calibration trials in the Tsinghua benchmark dataset** and **127.86±60.43 bpm with 9 calibration trials in the BETA dataset**.  
+We propose a subject transfer based canonical correlation analysis (stCCA) algorithm that utilizes the intra- and inter-subject knowledge to highly reduce the subject's calibration data. Our experimental results demonstrate that `the stCCA method performs well with extremely little calibration data`, providing an ITR at **198.18±59.12 bpm with 9 calibration trials in the Tsinghua benchmark dataset** and **127.86±60.43 bpm with 9 calibration trials in the BETA dataset**.  
 
 
 ## What is subject transfer CCA (stCCA)?  
@@ -43,6 +43,8 @@ Weight vector is shared across different stimulus frequencies
 
 These two datasets can be downloaded from http://bci.med.tsinghua.edu.cn/  
 
+> In [1], we used the Tsinghua benchmark dataset and UCSD dataset [4]. 
+
 ## Matlab code
 
 **fun_stcca(f_idx,num_of_trials,TW,dataset_no)**  
@@ -70,7 +72,9 @@ In this simulation study, we test the accuracy of the stCCA with only 9 calibrat
 > all_sub_itr=itr_bci(sub_acc/100,40,(0.7+0.5)\*ones(35,1));  
 > mean(all_sub_itr);    
   
-We can achieve the average ITR is 198.18$\pm$59.12 bpm, which is exactly the one as indicated in Table IV in [1]. As mentioned in [1], the stCCA performance is comparable to the calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials)
+We can achieve the average ITR is `198.18 bpm`, which is exactly the one as indicated in Table IV in [1] (this code can be used to reproduce the results as reported in [1], such as the Figure 7 and Figure 9.). As mentioned in [1], this ITR is comparable to some of current calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials). 
+
+
 
 ### Dataset II
 
@@ -80,7 +84,7 @@ We can achieve the average ITR is 198.18$\pm$59.12 bpm, which is exactly the one
 > all_sub_itr=itr_bci(sub_acc/100,40,(0.7+0.5)\*ones(70,1));  
 > mean(all_sub_itr);  
 
-It is comparable to the calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials)
+We can achieve the average ITR is `127.86 bpm`. I believe that this performance is comparable to some of current calibration-based algorithms with minimally required calibration data (i.e., the eCCA with 40 calibration trials and the eTRCA with 80 calibration trials). 
 
 ## Version 
 v1.0: (28 Oct 2022)  
@@ -93,6 +97,7 @@ If you find any mistakes, please let me know via chiman465@gmail.com.
 [1] Wong, C. M., et al. (2020). Inter-and intra-subject transfer reduces calibration effort for high-speed SSVEP-based BCIs. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 28(10), 2123-2135.  
 [2] Wang, Y., et al. (2016). A benchmark dataset for SSVEP-based brain–computer interfaces. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 25(10), 1746-1752.   
 [3] Liu, B., et al. (2020). BETA: A large benchmark database toward SSVEP-BCI application. Frontiers in neuroscience, 14, 627.  
+[4] Nakanishi, M., et al. (2015). A comparison study of canonical correlation analysis based methods for detecting steady-state visual evoked potentials. PloS one, 10(10), e0140703.  
 
 # Citation  
 If you use this code for a publication, please cite the following papers
@@ -129,3 +134,4 @@ publisher={IEEE}
   year={2020},  
   publisher={IEEE}  
 }  
+
