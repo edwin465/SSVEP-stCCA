@@ -10,6 +10,8 @@ In the stCCA, it uses the intra-subject spatial filter and inter-subject SSVEP t
 ### Intra-subject spatial filter  
 According to [1], we find that `SSVEPs share a common spatial pattern (or a common spatial filter) across different stimulus frequencies` (precisely speaking, from 8Hz to 15.8Hz) and `the spatial pattern has very large individual difference`. This may imply that **each subject has his/her own spatial filter and different subjects cannot share a common spatial filter**. This subject-specific spatial filter can be termed **the intra-subject spatial filter**. 
 
+![result1](https://github.com/edwin465/SSVEP-stCCA/blob/main/35subjects_40frequencies_common_spatial_pattern_topoplot.png)
+
 Based on the multi-stimulus CCA, it is possible to learn the intra-subject spatial filter from a subject's SSVEP templates $\bar{\mathbf{X}}\_j$ corresponding to only several frequencies (e.g., $K$ frequencies, $1 \le K \le N\_f$ and $N\_f$ is the number of stimuli):  
 ```math
 r_{k}=\max_{\mathbf{u},\mathbf{v}}{\frac{\mathbf{u}^\top\mathcal{X}^\top\mathcal{Y}\mathbf{v}}{\sqrt{\mathbf{u}^\top \mathcal{X}^\top\mathcal{X}\mathbf{u}\cdot\mathbf{v}^\top\mathcal{Y}^\top\mathcal{Y}\mathbf{v}}}}=\mathrm{CCA}(\mathcal{X},\mathcal{Y}), 
