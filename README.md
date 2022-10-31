@@ -12,6 +12,7 @@ According to [1], we find that `SSVEPs share a common spatial pattern (or a comm
 
 ![result1](https://github.com/edwin465/SSVEP-stCCA/blob/main/35subjects_40frequencies_common_spatial_pattern_topoplot.png)
 
+
 Based on the multi-stimulus CCA, it is possible to learn the intra-subject spatial filter from a subject's SSVEP templates $\bar{\mathbf{X}}\_j$ corresponding to only several frequencies (e.g., $K$ frequencies, $1 \le K \le N\_f$ and $N\_f$ is the number of stimuli):  
 ```math
 r_{k}=\max_{\mathbf{u},\mathbf{v}}{\frac{\mathbf{u}^\top\mathcal{X}^\top\mathcal{Y}\mathbf{v}}{\sqrt{\mathbf{u}^\top \mathcal{X}^\top\mathcal{X}\mathbf{u}\cdot\mathbf{v}^\top\mathcal{Y}^\top\mathcal{Y}\mathbf{v}}}}=\mathrm{CCA}(\mathcal{X},\mathcal{Y}), 
@@ -35,10 +36,20 @@ where
 and $a\_1$, $a\_1$, ..., $a\_K$ are the indices of $K$ stimuli (let's say: $1 \le a_1 < a_2 \cdots < a_K \le N\_f$).  
 
 ### Inter-subject SSVEP template  
-Here we assume that `different subjects' spatially filtered SSVEP template share common knowledge`. Specifically, **a new subject's (or target subject's) spatially filtered SSVEP template is the weighted summation of the existing subjects' (or source subjects') spatially filtered SSVEP templates**. In addition, the weight vector is invariant with different stimulus frequencies.
+Here we assume that `different subjects' spatially filtered SSVEP template share common knowledge`. Specifically, **a new subject's (or target subject's) spatially filtered SSVEP template is the weighted summation of the existing subjects' (or source subjects') spatially filtered SSVEP templates**. In addition, the weight vector is invariant with different stimulus frequencies.  
 
+```math
+\tilde{\mathbf{X}}_k=\frac{1}{N_{sub}}\sum_{n=1}^{M}{w_{n}\cdot {_{n}\bar{\mathbf{X}}_{k}}\cdot{_{n}{\mathbf{u}}}},
+```  
+where $w\_n$ is the weight for the $n$-th source subject, $\_{n}\overline{\mathbf{X}}\_{k}$ and $\_{n}\mathbf{u}$ are the SSVEP template and the spatial filter from the $n$-th source subject. $n=1,2,\cdots, M$.
 
+![result2](https://github.com/edwin465/SSVEP-stCCA/blob/main/block_diagram_2020_English.png)  
 
+```math  
+\mathbf{w}=\min_{\mathbf{w}}{\frac{1}{2} ||{\mathbf{b}-\mathbf{A}\mathbf{w}}}||,
+``` 
+where $\mathbf{w}=[w\_{1},w\_{2},\cdots,w\_{M}]^\top$.
+  
 ## Two SSVEP datasets
 1. Tsinghua benchmark dataset (Dataset I) [2]  
 2. BETA dataset (Dataset II) [3]  
@@ -74,7 +85,7 @@ In this simulation study, we test the accuracy of the stCCA with only 9 calibrat
 > all_sub_itr=itr_bci(sub_acc/100,40,(0.7+0.5)\*ones(35,1));  
 > mean(all_sub_itr);    
   
-We can achieve the average ITR is `198.18 bpm`, which is exactly the one as indicated in Table IV in [1] (this code can be used to reproduce the results as reported in [1], such as the Figure 7 and Figure 9.). As mentioned in [1], this ITR is comparable to some of current calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials). 
+The average ITR is `198.18 bpm`, which is exactly the same one in Table IV [1] (this code can be used to reproduce the results as reported in [1], such as the Figure 7 and Figure 9). As mentioned in [1], this ITR is comparable to some of current calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials). 
 
 
 
@@ -86,7 +97,7 @@ We can achieve the average ITR is `198.18 bpm`, which is exactly the one as indi
 > all_sub_itr=itr_bci(sub_acc/100,40,(0.7+0.5)\*ones(70,1));  
 > mean(all_sub_itr);  
 
-We can achieve the average ITR is `127.86 bpm`. I believe that this performance is comparable to some of current calibration-based algorithms with minimally required calibration data (i.e., the eCCA with 40 calibration trials and the eTRCA with 80 calibration trials). 
+The average ITR is `127.86 bpm`. I believe that this performance is comparable to some of current calibration-based algorithms with minimally required calibration data (i.e., the eCCA with 40 calibration trials and the eTRCA with 80 calibration trials). 
 
 ## Version 
 v1.0: (28 Oct 2022)  
