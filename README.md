@@ -1,11 +1,7 @@
 # SSVEP-stCCA
-High performance but long calibration time 
-Calibration-based algorithm
+Steady-state visual evoked potential (SSVEP)-based brain-computer interfaces (BCIs) can deliver high information transfer rate (ITR), but **requiring a large amount of subject’s calibration data to learn the class- and subject-specific model parameters (e.g. the spatial filters and SSVEP templates)**. Among the current calibration-based algorithms, the amount of the calibration data is proportional to the number of classes (or visual stimuli). In addition, **the size of calibration data cannot be less than the number of stimuli**.  
 
-The size of calibration data cannot be less than the number of stimuli
-
-We propose a new CCA algorithm that utilizes the intra- and inter-subject knowledge 
-The size of calibration data can be less than the number of stimuli
+We propose a subject transfer based canonical correlation analysis (stCCA) algorithm that utilizes the intra- and inter-subject knowledge to highly reduce the subject's calibration data. Our experimental results demonstrate that the stCCA method performs well with extremely little calibration data, providing an ITR at **198.18±59.12 bpm with 9 calibration trials in the Tsinghua benchmark dataset** and **127.86±60.43 bpm with 9 calibration trials in the BETA dataset**.  
 
 
 ## What is subject transfer CCA (stCCA)?  
@@ -74,8 +70,7 @@ In this simulation study, we test the accuracy of the stCCA with only 9 calibrat
 > all_sub_itr=itr_bci(sub_acc/100,40,(0.7+0.5)\*ones(35,1));  
 > mean(all_sub_itr);    
   
-We can achieve the performance of, which is exactly the one as indicated in Table xx in [1].  
-It is comparable to the calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials)
+We can achieve the average ITR is 198.18$\pm$59.12 bpm, which is exactly the one as indicated in Table IV in [1]. As mentioned in [1], the stCCA performance is comparable to the calibration-based algorithms with minimally required calibration data (i.e., the ms-eCCA with 40 calibration trials and the eTRCA with 80 calibration trials)
 
 ### Dataset II
 
