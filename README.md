@@ -96,7 +96,7 @@ In this simulation study, we test the accuracy of the stCCA with only 9 calibrat
 
 ### Dataset I
 
-> fun_calculate_ssvep_template(1);			% run it if you do not have 'th_ssvep_template_for_stcca.mat'
+> fun_calculate_ssvep_template(1);			% run it if you do not have 'th_ssvep_template_for_stcca.mat'  
 > k=9;  
 > f_idx=round((40/k*[1:k]+40/k*[0:k-1])/2);  
 > [sub_acc]=fun_stcca(f_idx,1,0.7,1);  
@@ -109,7 +109,7 @@ The average ITR is `198.18 bpm`, which is exactly the same one in Table IV [1] (
 
 ### Dataset II
 
-> fun_calculate_ssvep_template(2);			% run it if you do not have 'beta_ssvep_template_for_stcca.mat'
+> fun_calculate_ssvep_template(2);			% run it if you do not have 'beta_ssvep_template_for_stcca.mat'  
 > k=9;  
 > f_idx=round((40/k*[1:k]+40/k*[0:k-1])/2);  
 > [sub_acc]=fun_stcca(f_idx,1,0.7,2);  
