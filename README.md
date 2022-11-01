@@ -39,20 +39,33 @@ and $a\_1$, $a\_1$, ..., $a\_K$ are the indices of $K$ stimuli (let's say: $1 \l
 Here we assume that `different subjects' spatially filtered SSVEP template share common knowledge`. Specifically, **a new subject's (or target subject's) spatially filtered SSVEP template is the weighted summation of the existing subjects' (or source subjects') spatially filtered SSVEP templates**. In addition, the weight vector is invariant with different stimulus frequencies.  
 
 ```math
-\tilde{\mathbf{X}}_k=\frac{1}{N_{sub}}\sum_{n=1}^{M}{w_{n}\cdot {_{n}\bar{\mathbf{X}}_{k}}\cdot{_{n}{\mathbf{u}}}},
+\tilde{\mathbf{X}}_k=\frac{1}{M}\sum_{n=1}^{M}{w_{n}\cdot {_{n}\bar{\mathbf{X}}_{k}}\cdot{_{n}{\mathbf{u}}}},
 ```  
-where $w\_n$ is the weight for the $n$-th source subject, $\_{n}\overline{\mathbf{X}}\_{k}$ and $\_{n}\mathbf{u}$ are the SSVEP template and the spatial filter from the $n$-th source subject. $n=1,2,\cdots, M$.
+where $w\_n$ is the weight for the $n$-th source subject, $\_{n}\bar{\mathbf{X}}\_{k}$ and $\_{n}\mathbf{u}$ are the SSVEP template and the spatial filter from the $n$-th source subject. $n=1,2,\cdots, M$.
 
 ![result2](https://github.com/edwin465/SSVEP-stCCA/blob/main/block_diagram_2020_English.png)  
 
 ```math  
 \mathbf{w}=\min_{\mathbf{w}}{\frac{1}{2} ||{\mathbf{b}-\mathbf{A}\mathbf{w}}}||,
 ```  
-where $\mathbf{w}=[w\_{1},w\_{2},\cdots,w\_{M}]^\top$, $\mathbf{b}$ is the collection of target subject's $K$ spatially filtered SSVEP templates, and $\mathbf{A}$ is the collection of $K$ spatially filtered SSVEP templates from source subjects.
+where $\mathbf{w}=[w\_{1},w\_{2},\cdots,w\_{M}]^\top$, $\mathbf{b}$ is the collection of target subject's $K$ spatially filtered SSVEP templates, and $\mathbf{A}$ is the collection of $K$ spatially filtered SSVEP templates from $M$ source subjects.
 
 ```math
-\mathbf{b}=\left[\mathbf{u}^\top\bar{\mathbf{X}}_{a_1}^\top,\mathbf{u}^\top\bar{\mathbf{X}}_{a_2}^\top, \cdots,\mathbf{u}^\top\bar{\mathbf{X}}_{a_K}^\top\right]^\top,\\
-```
+\mathbf{b}=\left[
+    \begin{array}{c}
+    \bar{\mathbf{X}}_{a_1}\cdot\mathbf{u} \\
+    \bar{\mathbf{X}}_{a_2}\cdot\mathbf{u} \\
+    \vdots \\
+    \bar{\mathbf{X}}_{a_K}\cdot\mathbf{u} 	\end{array}\right],
+
+\mathbf{A}=\left[
+    \begin{array}{cccc}
+    {_{1}\bar{\mathbf{X}}_{a_1}}\cdot{_{1}\mathbf{u}}& {_{2}\bar{\mathbf{X}}_{a_1}}\cdot{_{2}\mathbf{u}}&\cdots&{_M\bar{\mathbf{X}}_{a_1}}\cdot {_M}\mathbf{u}\\
+    {_{1}\bar{\mathbf{X}}_{a_2}}\cdot{_{1}\mathbf{u}}&{_{2}\bar{\mathbf{X}}_{a_2}}\cdot{_{2}\mathbf{u}}&\cdots&{_M\bar{\mathbf{X}}_{a_2}}\cdot {_M}\mathbf{u}\\
+     \vdots&  \vdots & \ddots &  \vdots\\
+    {_{1}\bar{\mathbf{X}}_{a_K}}\cdot{_{1}\mathbf{u}}&{_{2}\bar{\mathbf{X}}_{a_K}}\cdot{_{2}{\mathbf{u}}}&\cdots&{_M\bar{\mathbf{X}}_{a_K}}\cdot {_M}\mathbf{u}\\   
+	\end{array}\right],
+```  
   
 ## Two SSVEP datasets
 1. Tsinghua benchmark dataset (Dataset I) [2]  
