@@ -8,7 +8,7 @@ if dataset_no==1
     [~,target_order]=sort(sti_f);
     sti_f=sti_f(target_order);
     num_of_subj=35;
-    latencyDelay = 0.13;                     % latency
+    latencyDelay = 0.14;                     % latency
 elseif dataset_no==2
     str_dir='..\BETA SSVEP dataset\';
     ch_used=[48 54 55 56 57 58 61 62 63]; % Pz, PO5, PO3, POz, PO4, PO6, O1, Oz, O2
